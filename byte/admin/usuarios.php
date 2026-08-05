@@ -1,0 +1,3 @@
+<?php
+require __DIR__.'/layout_start.php';$users=db()->query('SELECT ID_Cliente,Nome_Cliente,Sobr_Cliente,Email_Cliente,CPF_Cliente FROM tbl_Clientes ORDER BY Nome_Cliente')->fetchAll(); ?>
+<div class="admin-head"><div><div class="eyebrow">ACESSOS</div><h1>Usuários.</h1></div></div><table class="data-table"><tr><th>Nome</th><th>E-mail</th><th>Tipo de acesso</th></tr><?php foreach($users as $u): ?><tr><td><?= e(trim(($u['Nome_Cliente'] ?? '') . ' ' . ($u['Sobr_Cliente'] ?? ''))) ?></td><td><?= e($u['Email_Cliente'] ?? '') ?></td><td><?= e(trim((string) ($u['CPF_Cliente'] ?? '')) === 'ADMIN' ? 'Admin' : 'Cliente') ?></td></tr><?php endforeach; ?></table><?php require __DIR__.'/layout_end.php'; ?>
